@@ -41,14 +41,8 @@ window.addEventListener('WebComponentsReady', function() {
   page('/myInfo', function() {
     app.route = 'myInfo';
   });
-  
-  page('/myInterventions', function() {
-    app.route = 'myInterventions';
-  });
-
-  page('/intervention/:intv', function(data) {
-    app.route = 'intervention';
-    app.params = data.params;
+  page('/statistics', function() {
+    app.route = 'statsPage';
   });
   
   page('/accounts/logout', function() {
