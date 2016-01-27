@@ -16,7 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="UNICEF eTools - Partners" />
-  <title>UNICEF eTools - Management</title>
+  <title>UNICEF eTools - Partners</title>
   <!-- Place favicon.ico in the `app/` directory -->
 
   <!-- Chrome for Android theme color -->
@@ -42,16 +42,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- Tile icon for Win8 (144x144) -->
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 
-  <!-- build:css /static/frontend/management/styles/main.css -->
-  <link rel="stylesheet" href="styles/management/main.css">
+  <!-- build:css /static/partner_portal/styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild-->
 
-  <!-- build:js /static/frontend/management/bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <!-- build:js /static/partner_portal/bower_components/webcomponentsjs/webcomponents-lite.min.js -->
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <!-- endbuild -->
 
-  <!-- will be replaced with /static/frontend/management/elements/management_elements.vulcanized.html -->
-  <link rel="import" href="elements/management_elements.html">
+  <!-- will be replaced with /static/partner_portal/elements/elements.vulcanized.html -->
+  <link rel="import" href="elements/elements.html">
   <!-- endreplace-->
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
@@ -88,9 +88,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </template>   
 
           <template is="dom-if" if='{{permissions.interventionsMenu}}'>
-            <a data-route="statsPage" href="{{baseUrl}}statistics">
-              <iron-icon icon="assessment"></iron-icon>
-              <span>Statistics</span>
+            <a data-route="myInterventions" href="{{baseUrl}}myInterventions">
+              <iron-icon icon="info"></iron-icon>
+              <span>Interventions</span>
             </a>
           </template> 
 
@@ -121,7 +121,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <!-- Application sub title -->
           <div class="bottom bottom-container center horizontal layout">
-            <div class="bottom-title paper-font-subhead">Welcome to eTools Management Portal</div>
+            <div class="bottom-title paper-font-subhead">Welcome to eTools Partner Portal</div>
           </div>
 
         </paper-toolbar>
@@ -133,10 +133,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
              
             <section data-route="home">
               <paper-material elevation="1">
-                <h1>Welcome to the Management Portal</h1>
+                <h1>Welcome to the Partner Portal</h1>
 
-                <p class="paper-font-subhead">Portal under construction.</p>
+                <p class="paper-font-subhead">As the portal is now under construction, for now, <br> Please take advantage of:</p>
+                <options-list></options-list>
 
+                <p class="paper-font-body2">Thank you for choosing to make our children's lives better! </p>
               </paper-material>
               
 
@@ -152,16 +154,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </template> 
 
             <template is="dom-if" if='{{permissions.interventionsMenu}}'>
-              <section data-route="statsPage">
+              <section data-route="myInterventions">
                 
-                    <management-page 
-                        app-data="[[appData]]"
+                    <interventions-page 
+                        app-data="[[appData]]" 
+                        siteinfo='[[siteinfo]]' 
                         user='{{user}}' 
                         permissions="[[permissions]]">
-                    </management-page>
+                    </interventions-page>
 
               </section>
             </template>
+
+
+            <section data-route="intervention">
+              <paper-material elevation="1">
+                <h2 class="page-title">Intervention with id: {{params.intv}} </h2>
+                <div>This is {{params.intv}}'s section</div>
+              </paper-material>
+            </section>
 
           </iron-pages>
         </div>
@@ -191,8 +202,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </template>
 
-  <!-- build:js /static/frontend/management/scripts/app.js -->
-  <script src="scripts/management_app.js"></script>
+  <!-- build:js /static/partner_portal/scripts/app.js -->
+  <script src="scripts/app.js"></script>
   <!-- endbuild-->
 </body>
 

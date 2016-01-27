@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   if ((window.location.port === '') || (window.location.port === '8099')) {  // if production
     // Uncomment app.baseURL below and
     // set app.baseURL to '/your-pathname/' if running from folder in production
-    app.baseUrl = '/management/';
+    app.baseUrl = '/partner/';
   }
 
   app.appData = {
@@ -29,10 +29,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     logoutEndpoint: window.location.origin + '/accounts/logout/',
     userInfoEp: window.location.origin + '/users/api/profile/',
     userPropertiesEp: window.location.origin + '/partnership/partnerstaffmember/',
-    userStatsEp: window.location.origin + '/management/api/stats/usercounts/',
-    tripsStatsEp: window.location.origin + '/management/api/stats/trips/',
-    agreementsStatsEp: window.location.origin + '/management/api/stats/agreements/',
-    interventionsStatsEp: window.location.origin + '/management/api/stats/interventions/',
     interventionsEp: [window.location.origin, 'partners', 'api', 'interventions'].join('/') + '/',
     getEndpoint: {
       userProperties: function(id) {
@@ -41,8 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     permissions: {
       partnerOnlyPermissions: ['interventionsMenu', 'userInfoMenu'],
-      defaultPermissions: ['userInfoMenu'],
-      partnerPermissions: ['interventionsMenu']
+      defaultPermissions: ['interventionsMenu', 'userInfoMenu'],
     }
   };
 
@@ -101,13 +96,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     app.$.paperDrawerPanel.closeDrawer();
   };
 
-  app.closeAndCondense = function() {
-    app.$.headerPanelMain.condense();
-    app.$.paperDrawerPanel.responsiveWidth = '1800px';
-  };
-  
-  app.openAndExpand = function() {
-    app.$.paperDrawerPanel.responsiveWidth = '600px';
-  };
-  
 })(document);
