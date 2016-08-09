@@ -36,7 +36,7 @@ var dist = function(subpath) {
   switch (subpath) {
     case 'styles/' + targetApp:
       return path.join(DIST, 'static/frontend/', targetApp,'/styles');
-    
+
     default:
       return !subpath ? DIST : path.join(DIST, subpath);
   }
@@ -45,7 +45,7 @@ var etoolsRoot = '../EquiTrack';
 //var etoolsRoot = '..';
 var etoolsAssets;
 var etoolsAssetsPath;
-var etoolsImages; 
+var etoolsImages;
 var etoolsImagesPath;
 var etoolsTemplatesPath;
 
@@ -113,14 +113,14 @@ var imageOptimizeTask = function(src, dest) {
 };
 
 var optimizeHtmlTask = function(src, dest) {
-  
+
   var assets = $.useref.assets({
     searchPath: ['.tmp', 'app', dist()]
   });
 
   // images are all common (indipendent of the app)
   var replaceImg =  function(imgStr) {
-    return '/static/' + imgStr;
+    return '../static/' + imgStr;
   };
 
   return gulp.src(src)
@@ -302,7 +302,7 @@ gulp.task('serve', ['styles', 'elements', 'images'], function() {
       // common resources
       case '/index.html':
         req.url = '/' + targetApp + '.html';
-        break;      
+        break;
       case '/users/api/profile/':
         req.url = '/data/users/profile.json';
         break;
@@ -489,14 +489,14 @@ gulp.task('wct:browser', function() {
     .pipe($.open({uri: 'http://127.0.0.1:2000/components/frontend/app/test/index.html'}));
 });
 
-gulp.task('wct:livereload', function() {  
+gulp.task('wct:livereload', function() {
   var child = childProcess.exec('./node_modules/livereloadx/bin/livereloadx.js app/test/');
   child.stdout.on('data', function(data) {
     console.log(data.replace(/[\n\r]+/g, ''));
   });
 });
 
-gulp.task('wct:start', function() {  
+gulp.task('wct:start', function() {
   var child = childProcess.exec('./node_modules/web-component-tester/bin/wct -p');
   child.stdout.on('data', function(data) {
     console.log(data.replace(/[\n\r]+/g, ''));
