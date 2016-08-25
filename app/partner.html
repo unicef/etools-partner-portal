@@ -67,9 +67,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <etools-loading id="loading"></etools-loading>
   <etools-alert id="alert"></etools-alert>
 
-  <!--<template is="dom-if" if='{{permissions.interventionsMenu}}'>-->
+  <template is="dom-if" if='{{permissions.interventionsMenu}}'>
     <interventions-data id="interventionData" interventions={{interventions}}></interventions-data>
-  <!--</template>-->
+  </template>
 
     <paper-drawer-panel id="paperDrawerPanel">
       <!-- Drawer Scroll Header Panel -->
@@ -94,7 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </a>
           </template>
 
-          <!--<template is="dom-if" if='{{permissions.interventionsMenu}}'>-->
+          <template is="dom-if" if='{{permissions.interventionsMenu}}'>
             <a data-route="myInterventions" href="{{baseUrl}}myInterventions">
               <iron-icon icon="group-work"></iron-icon>
               <span>Interventions</span>
@@ -103,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <iron-icon icon="dashboard"></iron-icon>
               <span>Reporting Dashbord</span>
             </a>
-          <!--</template>-->
+          </template>
 
         </paper-menu>
       </paper-scroll-header-panel>
@@ -174,7 +174,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </section>
             </template>
 
-            <!--<template is="dom-if" if='{{permissions.interventionsMenu}}'>-->
+            <template is="dom-if" if='{{permissions.interventionsMenu}}'>
               <section data-route="myInterventions">
                   <interventions-page
                       app-data="[[appData]]" interventions={{interventions}}>
@@ -195,7 +195,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     intervention-id="[[params.intvId]]"
                     rc-id="[[params.rcId]]"></rc-report>
               </section>
-            <!--</template>-->
+            </template>
 
           </iron-pages>
         </div>
