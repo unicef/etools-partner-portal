@@ -35,7 +35,7 @@
           <progress-bar current="{{rc.current_progress}}" against="{{rc.target}}"></progress-bar>
           <div hidden$="[[reportingActive]]" class$="{{_getClass(rc.disaggregation)}}">
             <locations-autocomplete selected-location="[[rc.preselectedLocation]]" class="reportInput" id="locationSelected" label="Location"
-                autocomplete-url="{{_autocompleteUrl()}}" selected-location-report="{{selectedLocationReport}}">
+                                    selected-location-report="{{selectedLocationReport}}">
             </locations-autocomplete><span>&nbsp;</span>
             <div class="indicatorStatusReport">
               <paper-radio-group selected="{{selectedStatus}}">
@@ -110,9 +110,6 @@
     },
     _getClass: function(disaggregation){
       return disaggregation ? 'bulkReportIndicator-d' : 'bulkReportIndicator';
-    },
-    _autocompleteUrl: function() {
-      return this.getEp('locationsAutocomplete').url;
     },
     validReport: function() {
       // make sure location is selected and location ID is present

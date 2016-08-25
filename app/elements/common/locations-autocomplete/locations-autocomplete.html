@@ -41,8 +41,7 @@
     <etools-ajax
           auto
           id="ajax"
-          url="[[url]]"
-          handle-as="text"
+          handle-as="json"
           on-response="handleResponse"
           debounce-duration="200">
     </etools-ajax>
@@ -85,11 +84,6 @@
   Polymer({
     is: 'locations-autocomplete',
     properties: {
-      autocompleteUrl: String,
-      url: {
-        type: String,
-        value: null
-      },
       choices: Array,
       value: {
         type: Number,
@@ -112,6 +106,7 @@
         value: '',
         observer: '_valueChangedDebounced'
       },
+      q: String,
       loadingValues: {
         type: Boolean,
         value: false
@@ -144,7 +139,6 @@
 
     },
     _valueChanged: function(e) {
-        // console.log('value changed', this.selectedLocation, this.preselected)
         if ((this.selectionChange) || (this.preselected)) {
           this.selectionChange = false;
           return;
@@ -153,15 +147,16 @@
         this.selectedLocation = null;
         this.selectedLocationReport = null;
         var collapse = this.$.collapse;
-        if (e !== undefined && e !== '') {
-          // trigger request
-          if (this.url !== this.autocompleteUrl + '?q=' + e) {
-            this.url = this.autocompleteUrl + '?q=' + e;
-            this.loadingValues = true;
-          }
-        } else
         if (e === '' && collapse.opened) {
-            collapse.toggle();
+          collapse.toggle();
+        }
+        else if (this.q === e && !collapse.opened) {
+          collapse.toggle();
+        }
+        else if (e !== '' && this.q !== e) {
+          this.q = e;
+          this.$.ajax.endpoint = {ep: 'locationsAutocomplete', data: {query: this.q}};
+          this.loadingValues = true;
         }
     },
     _valueChangedDebounced: function(e) {
@@ -186,15 +181,6 @@
           name: event.model.item.name
         });
         this.$.collapse.toggle();
-    },
-    changeUrl: function(){
-      
-      if (this.rcId){
-        this.rc = null;
-        this.url = this.appData.getEndpoint.resultChainDetails(this.rcId);
-      } else {
-        this.url = null;
-      }
     },
     handleResponse: function(rsp) {
       var collapse = this.$.collapse;
