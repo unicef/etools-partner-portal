@@ -63,8 +63,6 @@
         background-color: var(--primary-background-color);
       }
     </style>
-      <interventions-data interventions={{interventions}}></interventions-data>
-
 
     <h2>Current interventions: </h2>
     <paper-material elevation="1">
@@ -72,10 +70,10 @@
           <template>
               <div class="item"  on-tap="_goToIntervention" tabindex="0">
                   <div class="pad">
-                    
+
                     <div class="primary">[[item.title]]</div>
-                    
-                    
+
+
                     <div class="shortText">
                       <p>Status: [[underscoreless(item.status)]]</p>
                       <p>Ending: [[dateFormat(item.end_date, 'LL')]]</p>
@@ -87,8 +85,8 @@
           </template>
       </iron-list>
     </paper-material>
-   
-     
+
+
 
   </template>
 
@@ -110,7 +108,7 @@
       interventions: {
         type: Object
       }
-      
+
     },
     _goToIntervention: function(e){
       page(this.appData.baseUrl+'intervention/' + e.model.item.id+'/');
