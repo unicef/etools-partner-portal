@@ -101,7 +101,6 @@
           <locations-autocomplete 
               id="locationSelected"
               label="Reporting Location"
-              autocomplete-url="{{_autocompleteUrl()}}"
               value="{{locationValue}}"
               selected-location={{selectedLocation}}>
           </locations-autocomplete>
@@ -254,9 +253,6 @@
       this.interventionIndicators = this._getIndicators(interventionId);
       this._goToNextStep();
 
-    },
-    _autocompleteUrl: function() {
-      return this.getEp('locationsAutocomplete').url;
     },
     selectionChanged: function(ev){
       this.addReady = (ev.currentTarget.selectedItems.length > 0) ? true : false;
